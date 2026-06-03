@@ -5,9 +5,9 @@ import { colors } from "@/theme/colors";
 export const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: 324,
-        paddingHorizontal: 24,
-        paddingBottom: 18,
+        height: 354,
+        paddingHorizontal: 26,
+        paddingBottom: 46,
         gap: 24,
         justifyContent: 'flex-end',
         borderBottomRightRadius: 50,
@@ -21,5 +21,10 @@ export const styles = StyleSheet.create({
         fontSize: 32,
         color: colors.white
     },
-    resumoContainer: {}
+    resumoContainer: {
+        width: '100%',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 })

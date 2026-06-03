@@ -99,5 +99,6 @@ export const colors = {
     900: "#134e4a",
   },
   white: "#eeeeee",
+  translucent: "rgba(238, 238, 238, 0.3)",
   black: "#1e1e1e",
 };
