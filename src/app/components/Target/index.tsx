@@ -3,18 +3,30 @@ import { Feather } from '@expo/vector-icons'
 import { styles } from './style'
 import React from 'react'
 
-export default function Target() {
-    return (
-        <TouchableOpacity style={styles.container}>
-            <View style={styles.content}>
-                <Text style={styles.name} numberOfLines={1}>
-                    Comprar muitos pães de queijo
-                </Text>
-                <Text style={styles.status}>
-                    25% • R$ 250,00 de R$ 1.000,00
-                </Text>
-            </View>
-            <Feather name='chevron-right' size={20} />
-        </TouchableOpacity>
-    )
+export type TargetProps = {
+  id: string,
+  name: string,
+  percentage: string,
+  mark: string,
+  current: string
+}
+
+type Props = TouchableOpacityProps & {
+  data: TargetProps
+}
+
+export default function Target({ data, ...rest }: Props) {
+  return (
+    <TouchableOpacity style={styles.container} {...rest}>
+      <View style={styles.content}>
+        <Text style={styles.name} numberOfLines={1}>
+          {data.name}
+        </Text>
+        <Text style={styles.status}>
+          {data.percentage} • {data.current} de {data.mark}
+        </Text>
+      </View>
+      <Feather name='chevron-right' size={20} />
+    </TouchableOpacity>
+  )
 }

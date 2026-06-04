@@ -3,21 +3,16 @@ import { colors } from "@/theme/colors";
 
 export const styles = StyleSheet.create({
   container: {
-    height: 72,
+    backgroundColor: colors.teal[600],
+    height: 48,
     width: '100%',
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 8
   },
-  content: {
-    flex: 1,
-    gap: 8
-  },
-  name: {
+  title: {
     fontSize: 14,
-    color: colors.black
-  },
-  status: {
-    fontSize: 10,
-    color: colors.gray[500]
+    color: colors.white,
+    fontWeight: 500
   }
-})
+});

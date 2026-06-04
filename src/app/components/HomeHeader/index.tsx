@@ -6,53 +6,53 @@ import Separator from "../Separator"
 import Resume, { ResumeProps } from "../Resume"
 
 export type HomeHeaderProps = {
-    total: string,
-    input: ResumeProps,
-    output: ResumeProps
+  total: string,
+  input: ResumeProps,
+  output: ResumeProps
 }
 
 type Props = {
-    data: HomeHeaderProps
+  data: HomeHeaderProps
 }
 
 export default function HomeHeader({ data }: Props) {
-    return (
-        <LinearGradient
-            colors={[
-                colors.teal[500], colors.teal[800]
-            ]}
-            style={styles.container}
-        >
+  return (
+    <LinearGradient
+      colors={[
+        colors.teal[500], colors.teal[800]
+      ]}
+      style={styles.container}
+    >
 
-            <View>
-                <Text style={styles.label}>Total que você possui</Text>
-                <Text style={styles.total}>{data.total}</Text>
-            </View>
+      <View>
+        <Text style={styles.label}>Total que você possui</Text>
+        <Text style={styles.total}>{data.total}</Text>
+      </View>
 
-            <Separator
-                color={colors.translucent}
-            />
+      <Separator
+        color={colors.translucent}
+      />
 
-            <View style={styles.resumoContainer}>
-                <Resume
-                    data={data.input}
-                    icon={{
-                        nameIcon: 'arrow-up',
-                        colorIcon: colors.green[400]
-                    }}
-                />
+      <View style={styles.resumoContainer}>
+        <Resume
+          data={data.input}
+          icon={{
+            nameIcon: 'arrow-up',
+            colorIcon: colors.green[400]
+          }}
+        />
 
-                <Resume
-                    data={data.output}
-                    icon={{
-                        nameIcon: 'arrow-down',
-                        colorIcon: colors.red[500]
-                    }}
-                    isRight={true}
-                />
-            </View>
+        <Resume
+          data={data.output}
+          icon={{
+            nameIcon: 'arrow-down',
+            colorIcon: colors.red[500]
+          }}
+          isRight={true}
+        />
+      </View>
 
 
-        </LinearGradient>
-    )
+    </LinearGradient>
+  )
 }
