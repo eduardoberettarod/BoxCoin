@@ -1,7 +1,10 @@
 import { View, Text } from "react-native"
-import PageHeader from "./components/PageHeader"
-import Input from "./components/Input"
-import Button from "./components/Button"
+
+//components
+import PageHeader from "@/app/components/PageHeader"
+import Input from "@/app/components/Input"
+import InputCurrency from "@/app/components/InputCurrency"
+import Button from "@/app/components/Button"
 
 export default function Target() {
   return (
@@ -9,10 +12,6 @@ export default function Target() {
       <PageHeader
         title="Meta"
         subtitle="Economize para alcançar sua meta financeira"
-        rightButton={{
-          icon: 'edit-2',
-          onPress: () => console.log("Editar Meta")
-        }}
       />
 
       <View style={{ marginTop: 32, gap: 24 }}>
@@ -21,9 +20,9 @@ export default function Target() {
           placeholder="Ex: Comprar um carro zero."
         />
 
-        <Input
-          label="Nome da Meta"
-          placeholder="Ex: Comprar um carro zero."
+        <InputCurrency
+          label="Valor Alvo"
+          value={0}
         />
 
         <Button title="Salvar" onPress={() => console.log("Salvar Meta")} />
