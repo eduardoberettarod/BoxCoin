@@ -2,8 +2,8 @@ import { View, Text } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import { styles } from './style'
 import { colors } from "@/theme/colors"
-import Separator from "../Separator"
-import Resume, { ResumeProps } from "../Resume"
+import Separator from "@/app/components/Separator"
+import Resume, { ResumeProps } from "@/app/components/Resume"
 
 export type HomeHeaderProps = {
   total: string,

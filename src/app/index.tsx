@@ -1,10 +1,12 @@
-import { View, Text } from "react-native";
-import { router } from "expo-router";
+import { useCallback, useState } from "react";
+import { View, Text, Alert } from "react-native";
+import { router, useFocusEffect } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { use } from "react";
+import { useBoxCoinDatabase } from "@/database/useBoxCoinDatabase";
 
-import HomeHeader from "./components/HomeHeader";
-import Target from "./components/Target";
+//components
+import HomeHeader from "@/app/components/HomeHeader";
+import Target, { TargetProps } from "@/app/components/Target";
 import List from "@/app/components/List";
 import Button from "@/app/components/Button";
 
@@ -20,35 +22,42 @@ const resume = {
   }
 }
 
-const targets = [
-  {
-    id: '1',
-    name: "Jantar Especial",
-    percentage: '50%',
-    mark: "R$ 2.000,00",
-    current: 'R$ 1.000,00'
-  },
-  {
-    id: '2',
-    name: "Almoço Executivo",
-    percentage: '30%',
-    mark: "R$ 1.500,00",
-    current: 'R$ 1.050,00'
-  },
-  {
-    id: '3',
-    name: "Café da Manhã Premium",
-    percentage: '20%',
-    mark: "R$ 800,00",
-    current: 'R$ 640,00'
-  }
-]
-
 
 
 export default function Index() {
 
   const insets = useSafeAreaInsets()
+  const boxCoinDatabase = useBoxCoinDatabase()
+  const [targets, setTargets] = useState<TargetProps[]>([])
+
+  async function fetchTargets(): Promise<TargetProps[]> {
+    try {
+      const response = await boxCoinDatabase.listBySavedValue()
+      console.log(response)
+      return response.map((item) => ({
+        id: String(item.id),
+        name: item.name,
+        percentage: item.percentage.toFixed(0) + '%',
+        mark: String(item.amount),
+        current: String(item.current)
+      }))
+    } catch (error) {
+      Alert.alert("Erro", "Falha ao carregar as metas.")
+      console.log(error)
+      return []
+    }
+  }
+
+  async function fetchData() {
+    const boxCoinPromise = await fetchTargets()
+    const [boxCoinData] = await Promise.all([boxCoinPromise])
+
+    setTargets(boxCoinData)
+  }
+
+  useFocusEffect(
+    useCallback(() => { fetchData() }, [])
+  )
 
   return (
     <View style={{ flex: 1 }}>
